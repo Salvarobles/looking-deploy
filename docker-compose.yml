@@ -1,0 +1,41 @@
+version: "2.24.6"
+
+services:
+  database:
+    # Configuración para tu base de datos MariaDB
+    image: mariadb
+    restart: always
+    container_name: database
+    environment:
+      MYSQL_DATABASE: lookingDB
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    # Configuración para phpMyAdmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: database
+      MYSQL_ROOT_PASSWORD: salva
+    depends_on:
+      - database
+
+  looking:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: looking
+    ports:
+      - "8001:8000"
+      - "8081:80"
+    volumes:
+      - ./looking-backend:/var/www/html/looking-backend/
+      - ./looking-frontend:/var/www/html/looking-frontend/
+    environment:
+      - DATABASE_URL=mysql://root:salva@database:3306/lookingDB
+    depends_on:
+      - database
