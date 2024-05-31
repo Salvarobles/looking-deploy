@@ -21,7 +21,7 @@ RUN a2ensite react-app.conf
 WORKDIR /var/www/html/looking-backend/
 
 # Instalar las dependencias de Composer
-RUN composer install
+# RUN composer install
 
 # Exponer el puerto 9000 para PHP-FPM
 EXPOSE 8000
