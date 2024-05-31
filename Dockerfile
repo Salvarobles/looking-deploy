@@ -12,10 +12,12 @@ RUN apt-get update && apt-get install -y \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY symfony-app.conf /etc/apache2/sites-available/
 COPY react-app.conf /etc/apache2/sites-available/
+COPY ports.conf /etc/apache2/ports.conf
 
 RUN a2dissite 000-default.conf
 RUN a2ensite symfony-app.conf
 RUN a2ensite react-app.conf
+RUN apt install -y nano
 
 # Configurar directorio de trabajo
 WORKDIR /var/www/html/looking-backend/
