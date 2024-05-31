@@ -1,5 +1,5 @@
 # FROM php:8.3.4-fpm
-FROM yiisoftware/yii2-php:8.1-apache
+FROM yiisoftware/yii2-php:8.3-apache
 
 # Instalar extensiones y herramientas necesarias
 RUN apt-get update && apt-get install -y \
