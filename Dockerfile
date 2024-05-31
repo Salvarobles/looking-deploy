@@ -28,6 +28,3 @@ WORKDIR /var/www/html/looking-backend/
 # Exponer el puerto 9000 para PHP-FPM
 EXPOSE 8000
 EXPOSE 80
-
-# Comando para ejecutar PHP-FPM
-RUN service apache2 reload
