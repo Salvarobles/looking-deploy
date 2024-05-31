@@ -8,10 +8,11 @@ services:
     container_name: database
     environment:
       MYSQL_DATABASE: lookingDB
+      MARIA_ROOT_PASSWORD: salva
     ports:
       - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql
+      - ./db_data:/var/lib/mysql
 
   phpmyadmin:
     # Configuración para phpMyAdmin
@@ -39,3 +40,6 @@ services:
       - DATABASE_URL=mysql://root:salva@database:3306/lookingDB
     depends_on:
       - database
+
+volumes:
+  db_data:
