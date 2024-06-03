@@ -17,13 +17,12 @@ COPY ports.conf /etc/apache2/ports.conf
 RUN a2dissite 000-default.conf
 RUN a2ensite symfony-app.conf
 RUN a2ensite react-app.conf
+RUN a2enmod rewrite
 RUN apt install -y nano
 
 # Configurar directorio de trabajo
 WORKDIR /var/www/html/looking-backend/
 
-# Instalar las dependencias de Composer
-# RUN composer install
 
 # Exponer el puerto 9000 para PHP-FPM
 EXPOSE 8000
